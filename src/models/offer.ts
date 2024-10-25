@@ -1,5 +1,5 @@
-﻿import {City} from './City.ts';
-import {Location} from './Location.ts';
+﻿import {City} from './city.ts';
+import {Location} from './location.ts';
 
 export class Offer {
   public id: string;

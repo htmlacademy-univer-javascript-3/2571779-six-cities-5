@@ -1,5 +1,5 @@
-﻿import {Offer} from '../Models/Offer.ts';
-import offersJson from './Offers.json';
+﻿import {Offer} from '../models/offer.ts';
+import offersJson from './offers.json';
 
 export class TestData {
   public static Offers(): Offer[] {

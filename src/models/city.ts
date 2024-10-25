@@ -1,4 +1,4 @@
-﻿import {Location} from './Location.ts';
+﻿import {Location} from './location.ts';
 
 export class City {
   public name: string;
