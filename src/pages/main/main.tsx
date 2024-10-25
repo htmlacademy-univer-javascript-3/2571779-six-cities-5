@@ -1,11 +1,11 @@
 ﻿import React from 'react';
-import {OfferCard} from '../components/offer-card.tsx';
-import {Offer} from '../models/offer.ts';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../app-route.ts';
+import {OffersList} from './offers-list.tsx';
+import {AppRoute} from '../../app-route.ts';
+import {OfferShortInfo} from '../../models/offer-short-info.ts';
 
 interface IMainPageProps {
-  offers: Offer[];
+  offers: OfferShortInfo[];
 }
 
 export const MainPage: React.FC<IMainPageProps> = ({offers}) => (
@@ -98,10 +98,7 @@ export const MainPage: React.FC<IMainPageProps> = ({offers}) => (
               </ul>
             </form>
 
-            <div className="cities__places-list places__list tabs__content">
-              {offers.map((offer) =>
-                <OfferCard key={offer.id} offer={offer}/>)}
-            </div>
+            <OffersList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>

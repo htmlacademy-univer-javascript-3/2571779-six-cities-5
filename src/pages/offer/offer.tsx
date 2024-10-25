@@ -1,8 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../app-route.ts';
+import {AppRoute} from '../../app-route.ts';
+import {OfferFullInfo} from '../../models/offer-full-info.ts';
+import {OfferGallery} from './offer-gallery.tsx';
+import {RatingStars} from '../../components/rating-stars.tsx';
+import {OfferFeatures} from './offer-features.tsx';
+import {OfferInside} from './offer-inside.tsx';
 
-export const OfferPage: React.FC = () => (
+interface IOfferPageProps {
+  offer: OfferFullInfo;
+}
+
+export const OfferPage: React.FC<IOfferPageProps> = ({offer}) => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -36,35 +45,19 @@ export const OfferPage: React.FC = () => (
     <main className="page__main page__main--offer">
       <section className="offer">
         <div className="offer__gallery-container container">
-          <div className="offer__gallery">
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/room.jpg" alt="Photo studio"/>
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio"/>
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-            </div>
-          </div>
+          <OfferGallery images={offer.images}/>
         </div>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <div className="offer__mark">
-              <span>Premium</span>
-            </div>
+            {
+              offer.isPremium &&
+              <div className="offer__mark">
+                <span>Premium</span>
+              </div>
+            }
             <div className="offer__name-wrapper">
               <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                {offer.title}
               </h1>
               <button className="offer__bookmark-button button" type="button">
                 <svg className="offer__bookmark-icon" width="31" height="33">
@@ -75,61 +68,16 @@ export const OfferPage: React.FC = () => (
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
-                <span style={{width: '80%'}}></span>
-                <span className="visually-hidden">Rating</span>
+                <RatingStars rating={offer.rating}/>
               </div>
-              <span className="offer__rating-value rating__value">4.8</span>
+              <span className="offer__rating-value rating__value">{offer.rating}</span>
             </div>
-            <ul className="offer__features">
-              <li className="offer__feature offer__feature--entire">
-                  Apartment
-              </li>
-              <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
-              </li>
-              <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
-              </li>
-            </ul>
+            <OfferFeatures type={offer.type} maxAdults={offer.maxAdults} bedroomsCount={offer.bedrooms}/>
             <div className="offer__price">
-              <b className="offer__price-value">&euro;120</b>
+              <b className="offer__price-value">&euro;{offer.price}</b>
               <span className="offer__price-text">&nbsp;night</span>
             </div>
-            <div className="offer__inside">
-              <h2 className="offer__inside-title">What&apos;s inside</h2>
-              <ul className="offer__inside-list">
-                <li className="offer__inside-item">
-                    Wi-Fi
-                </li>
-                <li className="offer__inside-item">
-                    Washing machine
-                </li>
-                <li className="offer__inside-item">
-                    Towels
-                </li>
-                <li className="offer__inside-item">
-                    Heating
-                </li>
-                <li className="offer__inside-item">
-                    Coffee machine
-                </li>
-                <li className="offer__inside-item">
-                    Baby seat
-                </li>
-                <li className="offer__inside-item">
-                    Kitchen
-                </li>
-                <li className="offer__inside-item">
-                    Dishwasher
-                </li>
-                <li className="offer__inside-item">
-                    Cabel TV
-                </li>
-                <li className="offer__inside-item">
-                    Fridge
-                </li>
-              </ul>
-            </div>
+            <OfferInside goods={offer.goods}/>
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
