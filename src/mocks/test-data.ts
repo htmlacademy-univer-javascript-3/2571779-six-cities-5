@@ -1,8 +1,10 @@
 ﻿import {OfferShortInfo} from '../models/offer-short-info.ts';
+import {OfferFullInfo} from '../models/offer-full-info.ts';
+import {OfferComment} from '../models/offer-comment.ts';
 import offersJson from './offers.json';
 import favoritesJson from './favorites.json';
 import offerFullInfoJson from './offer-full-info.json';
-import {OfferFullInfo} from '../models/offer-full-info.ts';
+import offerCommentsJson from './offer-comments.json';
 
 export class TestData {
   public static Offers(): OfferShortInfo[] {
@@ -15,5 +17,9 @@ export class TestData {
 
   public static OfferDescription(): OfferFullInfo {
     return offerFullInfoJson as OfferFullInfo;
+  }
+
+  public static Comments(): OfferComment[] {
+    return offerCommentsJson as OfferComment[];
   }
 }

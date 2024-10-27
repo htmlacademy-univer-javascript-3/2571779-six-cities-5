@@ -1,0 +1,24 @@
+[
+  {
+    "id": "e66df5f6-08a2-451c-ac7a-d85bcc2a227e",
+    "comment": "Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.",
+    "date": "2024-10-06T21:00:00.756Z",
+    "rating": 1,
+    "user": {
+      "name": "Zak",
+      "avatarUrl": "https://14.design.htmlacademy.pro/static/avatar/4.jpg",
+      "isPro": false
+    }
+  },
+  {
+    "id": "6517f405-9da1-478a-a739-6c9c4f30b6c4",
+    "comment": "We loved it so much, the house, the veiw, the location just great.. Highly reccomend :)",
+    "date": "2024-10-05T21:00:00.756Z",
+    "rating": 4,
+    "user": {
+      "name": "Max",
+      "avatarUrl": "https://14.design.htmlacademy.pro/static/avatar/2.jpg",
+      "isPro": false
+    }
+  }
+]

@@ -1,4 +1,4 @@
-import {Host} from './host.ts';
+import {User} from './user.ts';
 import {OfferBase} from './offer-base.ts';
 
 export class OfferFullInfo extends OfferBase {
@@ -6,6 +6,6 @@ export class OfferFullInfo extends OfferBase {
   public description: string;
   public bedrooms: number;
   public goods: string[];
-  public host: Host;
+  public host: User;
   public maxAdults: number;
 }
