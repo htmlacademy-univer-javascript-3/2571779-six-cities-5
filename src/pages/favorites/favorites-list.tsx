@@ -1,6 +1,6 @@
 import React from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
-import {FavoriteOffer} from './favorite-offer.tsx';
+import {FavoriteCard} from './favorite-card.tsx';
 
 interface IFavoritesListProps {
   offers: OfferShortInfo[];
@@ -30,7 +30,7 @@ export const FavoritesList: React.FC<IFavoritesListProps> = ({offers}) => {
           </div>
           <div className="favorites__places">
             {cityOffers.map((cityOffer) => (
-              <FavoriteOffer offer={cityOffer} key={cityOffer.id}/>
+              <FavoriteCard offer={cityOffer} key={cityOffer.id}/>
             ))}
           </div>
         </li>

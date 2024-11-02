@@ -1,6 +1,8 @@
 import React from 'react';
 import {OfferBase} from '../models/offer-base.ts';
 import {RatingStars} from './rating-stars.tsx';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../app-route.ts';
 
 interface IOfferDescriptionProps {
   offer: OfferBase;
@@ -29,7 +31,7 @@ export const OfferDescription: React.FC<IOfferDescriptionProps> = ({offer}) => (
       </div>
     </div>
     <h2 className="place-card__name">
-      <a href="#">{offer.title}</a>
+      <Link to={AppRoute.Offer.CreateOne(offer.id)}>{offer.title}</Link>
     </h2>
     <p className="place-card__type">{offer.type}</p>
   </>

@@ -31,7 +31,7 @@ export const App: React.FC = () => {
             }
           />
           <Route path={AppRoute.Login} element={<LoginPage/>}/>
-          <Route path={AppRoute.Offer.Template} element={<OfferPage offer={offerDescription} comments={comments}/>}/>
+          <Route path={AppRoute.Offer.Template} element={<OfferPage offer={offerDescription} nearOffers={offers.slice(0, 3)} comments={comments}/>}/>
           <Route path='*' element={<NotFoundPage/>}/>
         </Routes>
       </BrowserRouter>

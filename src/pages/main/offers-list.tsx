@@ -1,6 +1,6 @@
 import React from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
-import {OfferCard} from './offer-card.tsx';
+import {OfferCard} from '../../components/offer-card.tsx';
 
 interface IExportListProps {
   offers: OfferShortInfo[];
