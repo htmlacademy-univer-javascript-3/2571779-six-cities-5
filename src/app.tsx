@@ -16,6 +16,7 @@ export const App: React.FC = () => {
   const favoriteOffers = TestData.Favorites();
   const offerDescription = TestData.OfferDescription();
   const comments = TestData.Comments();
+  const nearOffers = offers.slice(0, 3);
 
   return (
     <HelmetProvider>
@@ -31,7 +32,7 @@ export const App: React.FC = () => {
             }
           />
           <Route path={AppRoute.Login} element={<LoginPage/>}/>
-          <Route path={AppRoute.Offer.Template} element={<OfferPage offer={offerDescription} nearOffers={offers.slice(0, 3)} comments={comments}/>}/>
+          <Route path={AppRoute.Offer.Template} element={<OfferPage offer={offerDescription} nearOffers={nearOffers} comments={comments}/>}/>
           <Route path='*' element={<NotFoundPage/>}/>
         </Routes>
       </BrowserRouter>

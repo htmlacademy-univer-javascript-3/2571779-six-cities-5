@@ -60,7 +60,13 @@ export const OfferPage: React.FC<IOfferPageProps> = ({offer, nearOffers, comment
             <OfferReviews comments={comments}/>
           </div>
         </div>
-        <Map/>
+        <div style={{height: '550px', width: '1100px', margin: 'auto'}}>
+          <Map
+            city={offer.city}
+            offersLocation={[...nearOffers, offer]}
+            activeLocationId={offer.id}
+          />
+        </div>
       </section>
       <div className="container">
         <section className="near-places places">
