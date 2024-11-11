@@ -1,5 +1,5 @@
 import React from 'react';
-import {AuthorizationStatus} from './const.tsx';
+import {AuthorizationStatus} from './const.ts';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../app-route.ts';
 

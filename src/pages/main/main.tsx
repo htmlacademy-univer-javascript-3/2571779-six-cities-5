@@ -2,8 +2,8 @@
 import {OffersList} from './offers-list.tsx';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {Header} from '../../components/header.tsx';
-import {CITIES} from '../../shared/const.tsx';
-import {Map} from '../../components/map/map.tsx';
+import {CITIES} from '../../shared/const.ts';
+import {Map} from '../../components/map.tsx';
 import {OfferBase} from '../../models/offer-base.ts';
 
 interface IMainPageProps {
@@ -53,7 +53,7 @@ export const MainPage: React.FC<IMainPageProps> = ({offers}) => {
                 </ul>
               </form>
 
-              <OffersList offers={offers.filter(x => x.city.name === 'Amsterdam')} setActiveOffer={setActiveCard}/>
+              <OffersList offers={offers.filter((x) => x.city.name === 'Amsterdam')} setActiveOffer={setActiveCard}/>
             </section>
             <div className="cities__right-section">
               <Map city={CITIES[3]} offersLocation={offers} activeLocationId={activeCard?.id}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {User} from '../../models/user.ts';
+import {User} from '../../../models/user.ts';
 
 interface IOfferHostDescriptionProps {
   host: User;

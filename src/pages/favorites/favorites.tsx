@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {AppRoute} from '../../app-route.ts';
 import {FavoritesList} from './favorites-list.tsx';
-import {Header} from "../../components/header.tsx";
+import {Header} from '../../components/header.tsx';
 
 interface IFavoritesPageProps {
   offers: OfferShortInfo[];

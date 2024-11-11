@@ -5,7 +5,7 @@ import {OfferBase} from '../../models/offer-base.ts';
 
 interface IExportListProps {
   offers: OfferShortInfo[];
-  setActiveOffer: (offer: OfferBase) => void;
+  setActiveOffer: (offer: OfferBase | null) => void;
 }
 
 export const OffersList: React.FC<IExportListProps> = ({offers, setActiveOffer})=> (

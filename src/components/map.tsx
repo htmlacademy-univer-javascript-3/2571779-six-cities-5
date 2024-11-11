@@ -1,10 +1,10 @@
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import React, {useRef, useEffect} from 'react';
-import {City} from '../../models/city.ts';
-import {useMap} from '../../hooks/use-map.ts';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../shared/const.tsx';
-import {OfferBase} from '../../models/offer-base.ts';
+import {City} from '../models/city.ts';
+import {useMap} from '../hooks/use-map.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../shared/const.ts';
+import {OfferBase} from '../models/offer-base.ts';
 
 interface MapProps {
   city: City;
