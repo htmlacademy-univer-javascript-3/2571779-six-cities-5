@@ -1,5 +1,5 @@
 import React from 'react';
-import {OfferType} from '../../models/offer-base.ts';
+import {OfferType} from '../../../models/offer-base.ts';
 
 interface IOfferFeaturesProps {
   bedroomsCount: number;

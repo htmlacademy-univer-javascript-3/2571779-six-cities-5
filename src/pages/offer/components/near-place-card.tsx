@@ -1,9 +1,9 @@
 import React from 'react';
-import {OfferDescription} from '../../components/offer-description.tsx';
-import {CardPremiumMark} from '../../components/card-premium-mark.tsx';
-import {OfferShortInfo} from '../../models/offer-short-info.ts';
+import {OfferDescription} from '../../../components/offer-description.tsx';
+import {CardPremiumMark} from '../../../components/card-premium-mark.tsx';
+import {OfferShortInfo} from '../../../models/offer-short-info.ts';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../app-route.ts';
+import {AppRoute} from '../../../app-route.ts';
 
 interface INearPlaceCardProps {
   offer: OfferShortInfo;

@@ -9,7 +9,7 @@ import {LoginPage} from './pages/login.tsx';
 import {NotFoundPage} from './pages/not-found.tsx';
 import {OfferPage} from './pages/offer/offer.tsx';
 import {PrivateRoute} from './shared/private-route.tsx';
-import {AuthorizationStatus} from './shared/const.tsx';
+import {AuthorizationStatus} from './shared/const.ts';
 
 export const App: React.FC = () => {
   const offers = TestData.Offers();
@@ -26,7 +26,7 @@ export const App: React.FC = () => {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
                 <FavoritesPage offers={favoriteOffers}/>
               </PrivateRoute>
             }

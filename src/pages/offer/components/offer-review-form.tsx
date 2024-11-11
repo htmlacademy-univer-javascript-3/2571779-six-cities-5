@@ -30,8 +30,8 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
     <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {POSSIBLE_RATING_VALUES.map((value, id) => (
-          <React.Fragment key={id}>
+        {POSSIBLE_RATING_VALUES.map((value) => (
+          <React.Fragment key={value[0]}>
             <input
               className="form__rating-input visually-hidden"
               name="rating"

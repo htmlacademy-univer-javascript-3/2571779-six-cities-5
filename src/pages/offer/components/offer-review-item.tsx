@@ -1,6 +1,6 @@
 import React from 'react';
-import {OfferComment} from '../../models/offer-comment.ts';
-import {RatingStars} from '../../components/rating-stars.tsx';
+import {OfferComment} from '../../../models/offer-comment.ts';
+import {RatingStars} from '../../../components/rating-stars.tsx';
 
 interface IOfferReviewItemProps {
   comment: OfferComment;

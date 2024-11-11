@@ -1,5 +1,5 @@
 import React from 'react';
-import {OfferFullInfo} from '../../models/offer-full-info.ts';
+import {OfferFullInfo} from '../../../models/offer-full-info.ts';
 import {OfferHostDescription} from './offer-host-description.tsx';
 
 interface IOfferDescriptionProps {

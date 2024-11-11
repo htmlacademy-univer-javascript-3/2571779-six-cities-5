@@ -8,7 +8,7 @@ import {OfferBase} from '../models/offer-base.ts';
 
 interface IOfferCardProps {
   offer: OfferShortInfo;
-  setActiveOffer?: (offer: OfferBase) => void;
+  setActiveOffer?: (offer: OfferBase | null) => void;
 }
 
 export const OfferCard: React.FC<IOfferCardProps> = ({offer, setActiveOffer}) => {
@@ -18,8 +18,14 @@ export const OfferCard: React.FC<IOfferCardProps> = ({offer, setActiveOffer}) =>
     }
   }
 
+  function onCardUnHover() {
+    if (setActiveOffer) {
+      setActiveOffer(null);
+    }
+  }
+
   return (
-    <article className="cities__card place-card" onMouseEnter={onCardHover}>
+    <article className="cities__card place-card" onMouseEnter={onCardHover} onMouseLeave={onCardUnHover}>
       <CardPremiumMark isPremium={offer.isPremium}/>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={AppRoute.Offer.CreateOne(offer.id)}>

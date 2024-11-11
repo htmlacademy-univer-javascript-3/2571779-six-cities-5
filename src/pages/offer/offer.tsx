@@ -1,16 +1,16 @@
 import React from 'react';
 import {OfferFullInfo} from '../../models/offer-full-info.ts';
-import {OfferGallery} from './offer-gallery.tsx';
+import {OfferGallery} from './components/offer-gallery.tsx';
 import {RatingStars} from '../../components/rating-stars.tsx';
-import {OfferFeatures} from './offer-features.tsx';
-import {OfferInside} from './offer-inside.tsx';
-import {OfferDescription} from './offer-description.tsx';
-import {OfferReviews} from './offer-reviews.tsx';
+import {OfferFeatures} from './components/offer-features.tsx';
+import {OfferInside} from './components/offer-inside.tsx';
+import {OfferDescription} from './components/offer-description.tsx';
+import {OfferReviews} from './components/offer-reviews.tsx';
 import {OfferComment} from '../../models/offer-comment.ts';
-import {OfferPrice} from './offer-price.tsx';
+import {OfferPrice} from './components/offer-price.tsx';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
-import {NearPlaceCard} from './near-place-card.tsx';
-import {Map} from '../../components/map/map.tsx';
+import {NearPlaceCard} from './components/near-place-card.tsx';
+import {Map} from '../../components/map.tsx';
 import {Header} from '../../components/header.tsx';
 
 interface IOfferPageProps {
@@ -72,8 +72,8 @@ export const OfferPage: React.FC<IOfferPageProps> = ({offer, nearOffers, comment
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            {nearOffers.map((nearOffer, i) => (
-              <NearPlaceCard offer={nearOffer} key={i}/>
+            {nearOffers.map((nearOffer) => (
+              <NearPlaceCard offer={nearOffer} key={nearOffer.id}/>
             ))}
           </div>
         </section>
