@@ -3,6 +3,7 @@ import {City} from '../models/city.ts';
 import {setActiveCity, setOffersList} from './action.ts';
 import {OfferShortInfo} from '../models/offer-short-info.ts';
 import {CITIES} from '../shared/const.ts';
+import {TestData} from '../mocks/test-data.ts';
 
 interface IInitialState {
   currentCity: City;
@@ -11,7 +12,7 @@ interface IInitialState {
 
 const initialState: IInitialState = {
   currentCity: CITIES[3],
-  offersViewList: [],
+  offersViewList: TestData.Offers().filter((offer) => offer.city.name === CITIES[3].name),
 };
 
 export const reducer = createReducer(initialState, (builder) => {
