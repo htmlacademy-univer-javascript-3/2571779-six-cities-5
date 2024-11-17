@@ -27,7 +27,24 @@ export const useMap = (mapRef: MutableRefObject<HTMLElement | null>, city: City)
 
     setMap(instance);
     isRenderedRef.current = true;
+
+    return () => {
+      map?.clearAllEventListeners();
+    };
   }, [mapRef, map, city]);
+
+  useEffect(() => {
+    if (map) {
+      map.setView(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude,
+        },
+        city.location.zoom
+      );
+    }
+  }, [map, city]);
+
 
   return map;
 };

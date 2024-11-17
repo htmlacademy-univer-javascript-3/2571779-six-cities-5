@@ -1,7 +1,7 @@
 import React from 'react';
-import {OfferShortInfo} from '../../models/offer-short-info.ts';
-import {OfferCard} from '../../components/offer-card.tsx';
-import {OfferBase} from '../../models/offer-base.ts';
+import {OfferShortInfo} from '../../../models/offer-short-info.ts';
+import {OfferCard} from '../../../components/offer-card.tsx';
+import {OfferBase} from '../../../models/offer-base.ts';
 
 interface IExportListProps {
   offers: OfferShortInfo[];
