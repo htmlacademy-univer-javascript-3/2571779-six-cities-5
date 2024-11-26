@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css';
-import leaflet from 'leaflet';
+import leaflet, {Marker} from 'leaflet';
 import React, {useRef, useEffect} from 'react';
 import {City} from '../models/city.ts';
 import {useMap} from '../hooks/use-map.ts';
@@ -29,9 +29,11 @@ export const Map: React.FC<MapProps> = ({city, offersLocation, activeLocationId}
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers: Marker[] = [];
+
     if (map) {
       offersLocation.forEach((offer) => {
-        leaflet
+        const marker = leaflet
           .marker({
             lat: offer.location.latitude,
             lng: offer.location.longitude,
@@ -41,8 +43,16 @@ export const Map: React.FC<MapProps> = ({city, offersLocation, activeLocationId}
               : defaultCustomIcon
           })
           .addTo(map);
+
+        markers.push(marker);
       });
     }
+
+    return () => {
+      markers.forEach((marker) => {
+        marker.remove();
+      });
+    };
   }, [map, city, offersLocation, activeLocationId]);
 
   return <section className="cities__map" style={{height: '100%'}} ref={mapRef}/>;

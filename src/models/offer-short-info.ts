@@ -3,4 +3,3 @@
 export class OfferShortInfo extends OfferBase {
   public previewImage: string;
 }
-

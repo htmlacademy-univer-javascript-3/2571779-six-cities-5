@@ -22,7 +22,7 @@ export const App: React.FC = () => {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route index element={<MainPage offers={offers}/>}/>
+          <Route index element={<MainPage/>}/>
           <Route
             path={AppRoute.Favorites}
             element={
