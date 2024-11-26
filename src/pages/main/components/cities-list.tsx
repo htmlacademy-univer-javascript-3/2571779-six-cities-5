@@ -1,8 +1,7 @@
 import React from 'react';
 import {City} from '../../../models/city.ts';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
-import {setActiveCity, setOffersList} from '../../../store/action.ts';
-import {TestData} from '../../../mocks/test-data.ts';
+import {setActiveCity} from '../../../store/action.ts';
 import {useAppSelector} from '../../../hooks/use-app-selector.ts';
 
 interface ICitiesListProps {
@@ -15,8 +14,6 @@ export const CitiesList: React.FC<ICitiesListProps> = ({cities}) => {
 
   function onCityClick(city: City) {
     dispatch(setActiveCity({city}));
-    const matchOffers = TestData.Offers().filter((offer) => offer.city.name === city.name);
-    dispatch(setOffersList({offers: matchOffers}));
   }
 
   return (
