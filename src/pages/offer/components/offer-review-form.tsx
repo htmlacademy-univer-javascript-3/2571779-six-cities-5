@@ -21,6 +21,7 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
 
   function onFormSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+
     console.log(evt.currentTarget);
   }
 
