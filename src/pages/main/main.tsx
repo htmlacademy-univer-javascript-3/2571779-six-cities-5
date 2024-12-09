@@ -7,6 +7,7 @@ import {OfferBase} from '../../models/offer-base.ts';
 import {useAppSelector} from '../../hooks/use-app-selector.ts';
 import {CitiesList} from './components/cities-list.tsx';
 import {SortOptions} from './components/sort-options.tsx';
+import {Spinner} from "../../components/spinner/spinner.tsx";
 
 export const MainPage: React.FC = () => {
   const [activeCard, setActiveCard] = useState<OfferBase | null>(null);
@@ -16,6 +17,12 @@ export const MainPage: React.FC = () => {
   const offers = useAppSelector((state) => state.offersViewList
     .filter((offer) => offer.city.name === city.name)
     .sort(sort.sortFn));
+
+  if (!offers) {
+    return (
+      <Spinner/>
+    );
+  }
 
   return (
     <div className="page page--gray page--main">
