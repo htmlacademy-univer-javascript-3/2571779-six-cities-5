@@ -2,8 +2,8 @@ import React, {FormEvent, useRef} from 'react';
 import {Header} from '../components/header.tsx';
 import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {loginAction} from '../store/api-actions.ts';
-import {useNavigate} from "react-router-dom";
-import {AppRoute} from "../app-route.ts";
+import {useNavigate} from 'react-router-dom';
+import {AppRoute} from '../app-route.ts';
 
 const validatePassword = (password: string): boolean => {
   const digits = /\d/.test(password);

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
 import {postCommentAction} from '../../../store/api-actions.ts';
-import {useAppSelector} from "../../../hooks/use-app-selector.ts";
+import {useAppSelector} from '../../../hooks/use-app-selector.ts';
 
 interface IOfferReviewFormProps {
 }
