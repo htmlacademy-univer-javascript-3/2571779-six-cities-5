@@ -1,12 +1,11 @@
 import React from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {FavoriteCard} from './favorite-card.tsx';
+import {useAppSelector} from '../../hooks/use-app-selector.ts';
 
-interface IFavoritesListProps {
-  offers: OfferShortInfo[];
-}
+export const FavoritesList: React.FC = () => {
+  const offers = useAppSelector((state) => state.favoriteOffers);
 
-export const FavoritesList: React.FC<IFavoritesListProps> = ({offers}) => {
   const groups = new Map<string, OfferShortInfo[]>();
   offers.forEach((offer) => {
     const collection = groups.get(offer.city.name) ?? null;

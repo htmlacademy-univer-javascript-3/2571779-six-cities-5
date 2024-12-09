@@ -9,14 +9,20 @@ import {LoginPage} from './pages/login.tsx';
 import {NotFoundPage} from './pages/not-found.tsx';
 import {OfferPage} from './pages/offer/offer.tsx';
 import {PrivateRoute} from './shared/private-route.tsx';
-import {AuthorizationStatus} from './shared/const.ts';
+import {Spinner} from './components/spinner/spinner.tsx';
+import {useAppSelector} from './hooks/use-app-selector.ts';
 
 export const App: React.FC = () => {
-  const offers = TestData.Offers();
-  const favoriteOffers = TestData.Favorites();
+  const isOffersDataLoading = useAppSelector((state) => state.isDataLoading);
+
+  if (isOffersDataLoading) {
+    return (
+      <Spinner/>
+    );
+  }
   const offerDescription = TestData.OfferDescription();
   const comments = TestData.Comments();
-  const nearOffers = offers.slice(0, 3);
+  const nearOffers = TestData.Offers().slice(0, 3);
 
   return (
     <HelmetProvider>
@@ -26,13 +32,16 @@ export const App: React.FC = () => {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesPage offers={favoriteOffers}/>
+              <PrivateRoute>
+                <FavoritesPage/>
               </PrivateRoute>
             }
           />
           <Route path={AppRoute.Login} element={<LoginPage/>}/>
-          <Route path={AppRoute.Offer.Template} element={<OfferPage offer={offerDescription} nearOffers={nearOffers} comments={comments}/>}/>
+          <Route
+            path={AppRoute.Offer.Template}
+            element={<OfferPage offer={offerDescription} nearOffers={nearOffers} comments={comments}/>}
+          />
           <Route path='*' element={<NotFoundPage/>}/>
         </Routes>
       </BrowserRouter>
