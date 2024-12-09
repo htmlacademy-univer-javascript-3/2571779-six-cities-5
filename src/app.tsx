@@ -1,5 +1,4 @@
 ﻿import {MainPage} from './pages/main/main.tsx';
-import {TestData} from './mocks/test-data.ts';
 import React from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
@@ -20,9 +19,6 @@ export const App: React.FC = () => {
       <Spinner/>
     );
   }
-  const offerDescription = TestData.OfferDescription();
-  const comments = TestData.Comments();
-  const nearOffers = TestData.Offers().slice(0, 3);
 
   return (
     <HelmetProvider>
@@ -40,7 +36,7 @@ export const App: React.FC = () => {
           <Route path={AppRoute.Login} element={<LoginPage/>}/>
           <Route
             path={AppRoute.Offer.Template}
-            element={<OfferPage offer={offerDescription} nearOffers={nearOffers} comments={comments}/>}
+            element={<OfferPage/>}
           />
           <Route path='*' element={<NotFoundPage/>}/>
         </Routes>

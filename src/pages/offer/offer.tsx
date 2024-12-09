@@ -16,7 +16,6 @@ import {changeFavoriteStatusAction, fetchFullOfferInfoAction} from '../../store/
 import {useAppDispatch} from '../../hooks/use-app-dispatch.ts';
 import {setFullOfferInfo} from '../../store/action.ts';
 
-
 export const OfferPage: React.FC = () => {
   const {id} = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
