@@ -10,4 +10,5 @@ export class AppRoute {
   public static Main = '/';
   public static Favorites = '/favorites';
   public static Login = '/login';
+  public static NotFound = '/notFound';
 }

@@ -1,25 +1,51 @@
-import React from 'react';
-import {OfferFullInfo} from '../../models/offer-full-info.ts';
+import React, {useEffect} from 'react';
 import {OfferGallery} from './components/offer-gallery.tsx';
 import {RatingStars} from '../../components/rating-stars.tsx';
 import {OfferFeatures} from './components/offer-features.tsx';
 import {OfferInside} from './components/offer-inside.tsx';
 import {OfferDescription} from './components/offer-description.tsx';
 import {OfferReviews} from './components/offer-reviews.tsx';
-import {OfferComment} from '../../models/offer-comment.ts';
 import {OfferPrice} from './components/offer-price.tsx';
-import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {NearPlaceCard} from './components/near-place-card.tsx';
 import {Map} from '../../components/map.tsx';
 import {Header} from '../../components/header.tsx';
+import {useAppSelector} from '../../hooks/use-app-selector.ts';
+import {Spinner} from '../../components/spinner/spinner.tsx';
+import {useParams} from 'react-router-dom';
+import {changeFavoriteStatusAction, fetchFullOfferInfoAction} from '../../store/api-actions.ts';
+import {useAppDispatch} from '../../hooks/use-app-dispatch.ts';
+import {setFullOfferInfo} from '../../store/action.ts';
 
-interface IOfferPageProps {
-  offer: OfferFullInfo;
-  nearOffers: OfferShortInfo[];
-  comments: OfferComment[];
-}
 
-export const OfferPage: React.FC<IOfferPageProps> = ({offer, nearOffers, comments}) => {
+export const OfferPage: React.FC = () => {
+  const {id} = useParams<{ id: string }>();
+  const dispatch = useAppDispatch();
+  const offer = useAppSelector((state) => state.offerFullInfo);
+  const offerShortInfo = useAppSelector((state) => state.offersViewList.find((o) => o.id === offer?.id) ?? null);
+  const isFavorite = offer?.isFavorite ?? false;
+  const nearOffers = useAppSelector((state) => state.nearbyOffers);
+  const comments = useAppSelector((state) => state.comments);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFullOfferInfoAction(id));
+    }
+  }, [dispatch, id]);
+
+  if (!offer) {
+    return <Spinner/>;
+  }
+
+  function handleFavoriteClick() {
+    dispatch(changeFavoriteStatusAction({offer: offerShortInfo!, status: !isFavorite}));
+
+    if (!offer) {
+      return;
+    }
+    const updatedOffer = {...offer, isFavorite: !isFavorite};
+    dispatch(setFullOfferInfo({offer: updatedOffer}));
+  }
+
   return (
     <div className="page">
       <Header addNavigation/>
@@ -31,17 +57,18 @@ export const OfferPage: React.FC<IOfferPageProps> = ({offer, nearOffers, comment
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              {
-                offer.isPremium &&
+              {offer.isPremium && (
                 <div className="offer__mark">
                   <span>Premium</span>
                 </div>
-              }
+              )}
               <div className="offer__name-wrapper">
-                <h1 className="offer__name">
-                  {offer.title}
-                </h1>
-                <button className="offer__bookmark-button button" type="button">
+                <h1 className="offer__name">{offer.title}</h1>
+                <button
+                  className={`offer__bookmark-button ${isFavorite ? 'offer__bookmark-button--active' : ''} button`}
+                  type="button"
+                  onClick={handleFavoriteClick}
+                >
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -83,3 +110,4 @@ export const OfferPage: React.FC<IOfferPageProps> = ({offer, nearOffers, comment
     </div>
   );
 };
+

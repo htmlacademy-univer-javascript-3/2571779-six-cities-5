@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
+import {postCommentAction} from '../../../store/api-actions.ts';
+import {useAppSelector} from "../../../hooks/use-app-selector.ts";
 
 interface IOfferReviewFormProps {
 }
@@ -12,6 +15,8 @@ const POSSIBLE_RATING_VALUES: [number, string][] = [
 ];
 
 export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
+  const dispatch = useAppDispatch();
+  const offer = useAppSelector((state) => state.offerFullInfo);
   const [formData, setFormData] = useState({rating: '0', review: ''});
 
   function onCommentChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -21,11 +26,19 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
 
   function onFormSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+    const {rating, review} = formData;
 
-    console.log(evt.currentTarget);
+    if (!offer) {
+      return;
+    }
+
+    dispatch(postCommentAction({offerId: offer?.id, comment: review, rating: Number(rating)}))
+      .then(() => {
+        setFormData({rating: '', review: ''});
+      });
   }
 
-  const isSubmitDisabled = formData.rating === '0' || formData.review.length === 0;
+  const isSubmitDisabled = formData.rating === '0' || formData.review.length < 50;
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
