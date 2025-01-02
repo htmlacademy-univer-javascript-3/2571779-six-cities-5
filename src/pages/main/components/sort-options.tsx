@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
 import {useAppSelector} from '../../../hooks/use-app-selector.ts';
-import {setSortOption} from '../../../store/action.ts';
 import {SortOption} from '../shared/sort-option.ts';
+import {getSortOption} from "../../../store/navigation-data/navigation-data.selectors";
+import {setSortOption} from "../../../store/navigation-data/navigation-data.slice";
 
 export const SortOptions: React.FC = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   const dispatch = useAppDispatch();
-  const sortOption = useAppSelector((state) => state.sortOption);
+  const sortOption = useAppSelector(getSortOption);
 
   function onSortChosen(option: SortOption) {
     setIsOpened(false);

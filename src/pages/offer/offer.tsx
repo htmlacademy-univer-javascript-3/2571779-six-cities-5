@@ -14,16 +14,18 @@ import {Spinner} from '../../components/spinner/spinner.tsx';
 import {useParams} from 'react-router-dom';
 import {changeFavoriteStatusAction, fetchFullOfferInfoAction} from '../../store/api-actions.ts';
 import {useAppDispatch} from '../../hooks/use-app-dispatch.ts';
-import {setFullOfferInfo} from '../../store/action.ts';
+import {getNearbyOffers, getOfferComments, getOfferFullInfo} from "../../store/offer-info/offer-info.selectors";
+import {getOfferShortInfo} from "../../store/offers-data/offers-data.selectors";
+import {setFullOfferInfo} from "../../store/offer-info/offer-info.slice";
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
-  const offer = useAppSelector((state) => state.offerFullInfo);
-  const offerShortInfo = useAppSelector((state) => state.offersViewList.find((o) => o.id === offer?.id) ?? null);
+  const offer = useAppSelector(getOfferFullInfo);
+  const offerShortInfo = useAppSelector((state) => getOfferShortInfo(state, offer?.id ?? ''));
   const isFavorite = offer?.isFavorite ?? false;
-  const nearOffers = useAppSelector((state) => state.nearbyOffers);
-  const comments = useAppSelector((state) => state.comments);
+  const nearOffers = useAppSelector(getNearbyOffers);
+  const comments = useAppSelector(getOfferComments);
 
   useEffect(() => {
     if (id) {

@@ -2,9 +2,10 @@ import React from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {FavoriteCard} from './favorite-card.tsx';
 import {useAppSelector} from '../../hooks/use-app-selector.ts';
+import {getFavorites} from "../../store/offers-data/offers-data.selectors";
 
 export const FavoritesList: React.FC = () => {
-  const offers = useAppSelector((state) => state.favoriteOffers);
+  const offers = useAppSelector(getFavorites);
 
   const groups = new Map<string, OfferShortInfo[]>();
   offers.forEach((offer) => {

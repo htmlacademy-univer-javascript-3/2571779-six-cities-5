@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
 import {postCommentAction} from '../../../store/api-actions.ts';
 import {useAppSelector} from '../../../hooks/use-app-selector.ts';
+import {getOfferFullInfo} from "../../../store/offer-info/offer-info.selectors";
+import {useNavigate} from "react-router-dom";
+import {AppRoute} from "../../../app-route";
 
 interface IOfferReviewFormProps {
 }
@@ -16,7 +19,8 @@ const POSSIBLE_RATING_VALUES: [number, string][] = [
 
 export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
   const dispatch = useAppDispatch();
-  const offer = useAppSelector((state) => state.offerFullInfo);
+  const navigate = useNavigate();
+  const offer = useAppSelector(getOfferFullInfo);
   const [formData, setFormData] = useState({rating: '0', review: ''});
 
   function onCommentChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -39,6 +43,10 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
   }
 
   const isSubmitDisabled = formData.rating === '0' || formData.review.length < 50;
+
+  if (!offer) {
+    navigate(AppRoute.NotFound)
+  }
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
