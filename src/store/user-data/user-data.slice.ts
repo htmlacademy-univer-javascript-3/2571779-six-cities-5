@@ -31,7 +31,6 @@ const userDataSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(checkAuthAction.pending, (state) => {
-        state.localUser = null;
         state.authStatus = AuthorizationStatus.Unknown;
       })
       .addCase(checkAuthAction.fulfilled, (state, action) => {
@@ -56,6 +55,7 @@ const userDataSlice = createSlice({
         dropToken();
         state.authStatus = AuthorizationStatus.NoAuth;
         state.localUser = null;
+        window.location.reload();
       })
   }
 });

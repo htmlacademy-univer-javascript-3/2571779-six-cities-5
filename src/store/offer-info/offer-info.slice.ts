@@ -13,12 +13,14 @@ export interface IOfferInfoInitialState {
   offerFullInfo: OfferFullInfo | null;
   nearbyOffers: OfferShortInfo[];
   comments: OfferComment[];
+  isDataLoaded: boolean;
 }
 
 const initialState: IOfferInfoInitialState = {
   offerFullInfo: null,
   nearbyOffers: [],
   comments: [],
+  isDataLoaded: false,
 };
 
 const offerInfoSlice = createSlice({
@@ -44,8 +46,17 @@ const offerInfoSlice = createSlice({
   },
   extraReducers(builder) {
     builder
+      .addCase(fetchFullOfferInfoAction.pending, (state) => {
+        state.isDataLoaded = false;
+      })
       .addCase(fetchFullOfferInfoAction.fulfilled, (state, action) => {
         offerInfoSlice.caseReducers.setFullOfferInfo(state, action);
+        state.isDataLoaded = true;
+      })
+      .addCase(fetchFullOfferInfoAction.rejected, (state) => {
+        state.offerFullInfo = null;
+        state.comments = [];
+        state.nearbyOffers = [];
       })
       .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
         offerInfoSlice.caseReducers.setNearbyOffers(state, action);

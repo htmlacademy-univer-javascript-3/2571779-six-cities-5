@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AppDispatch} from '../types/state.ts';
+import {AppDispatch, State} from '../types/state.ts';
 import {AxiosInstance} from 'axios';
 import {OfferShortInfo} from '../models/offer-short-info.ts';
 import {ApiRoute} from '../api-route.ts';
@@ -8,7 +8,6 @@ import {AuthData} from '../models/auth-data.ts';
 import {dropToken} from '../services/token.ts';
 import {OfferFullInfo} from '../models/offer-full-info.ts';
 import {OfferComment} from '../models/offer-comment.ts';
-import {State} from "./index";
 
 export const fetchOffersAction = createAsyncThunk<{ offers: OfferShortInfo[] }, undefined, {
   dispatch: AppDispatch;

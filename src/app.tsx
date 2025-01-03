@@ -8,18 +8,8 @@ import {LoginPage} from './pages/login.tsx';
 import {NotFoundPage} from './pages/not-found.tsx';
 import {OfferPage} from './pages/offer/offer.tsx';
 import {PrivateRoute} from './shared/private-route.tsx';
-import {Spinner} from './components/spinner/spinner.tsx';
-import {useAppSelector} from './hooks/use-app-selector.ts';
 
 export const App: React.FC = () => {
-  const isOffersDataLoading = useAppSelector((state) => state.isDataLoading);
-
-  if (isOffersDataLoading) {
-    return (
-      <Spinner/>
-    );
-  }
-
   return (
     <HelmetProvider>
       <BrowserRouter>

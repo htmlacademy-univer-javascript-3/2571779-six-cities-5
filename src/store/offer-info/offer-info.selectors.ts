@@ -5,5 +5,6 @@ import {OfferShortInfo} from "../../models/offer-short-info";
 import {OfferComment} from "../../models/offer-comment";
 
 export const getOfferFullInfo = (state: State): OfferFullInfo | null => state[NameSpace.OfferInfo].offerFullInfo;
+export const getIsDataLoaded = (state: State): boolean => state[NameSpace.OfferInfo].isDataLoaded;
 export const getNearbyOffers = (state: State): OfferShortInfo[] => state[NameSpace.OfferInfo].nearbyOffers;
 export const getOfferComments = (state: State): OfferComment[] => state[NameSpace.OfferInfo].comments;

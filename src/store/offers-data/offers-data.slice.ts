@@ -28,7 +28,7 @@ const offersDataSlice = createSlice({
       const {offers} = action.payload;
       state.favoriteOffers = offers;
     },
-    setOffer: (state, action) => {
+    setOffer: (state, action: PayloadAction<{ offer: OfferShortInfo }>) => {
       const {offer} = action.payload;
       state.offersViewList = state.offersViewList.map((item) =>
         item.id === offer.id ? offer : item
@@ -56,6 +56,10 @@ const offersDataSlice = createSlice({
         } else {
           state.favoriteOffers = state.favoriteOffers.filter(o => o.id !== offer.id);
         }
+
+        state.offersViewList = state.offersViewList.map((item) =>
+          item.id === updatedOffer.id ? updatedOffer : item
+        );
       })
   }
 });
