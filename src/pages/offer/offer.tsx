@@ -6,7 +6,6 @@ import {OfferInside} from './components/offer-inside.tsx';
 import {OfferDescription} from './components/offer-description.tsx';
 import {OfferReviews} from './components/offer-reviews.tsx';
 import {OfferPrice} from './components/offer-price.tsx';
-import {NearPlaceCard} from './components/near-place-card.tsx';
 import {Map} from '../../components/map.tsx';
 import {Header} from '../../components/header.tsx';
 import {useAppSelector} from '../../hooks/use-app-selector.ts';
@@ -25,6 +24,7 @@ import {setFullOfferInfo} from "../../store/offer-info/offer-info.slice";
 import {AppRoute} from "../../app-route";
 import {getAuthStatus} from "../../store/user-data/user-data.selectors";
 import {AuthorizationStatus} from "../../shared/const";
+import {NearPlaceCards} from "./components/near-place-cards";
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams<{ id: string }>();
@@ -114,16 +114,7 @@ export const OfferPage: React.FC = () => {
                 />
               </div>
             </section>
-            <div className="container">
-              <section className="near-places places">
-                <h2 className="near-places__title">Other places in the neighbourhood</h2>
-                <div className="near-places__list places__list">
-                  {nearOffers.map((nearOffer) => (
-                    <NearPlaceCard offer={nearOffer} key={nearOffer.id}/>
-                  ))}
-                </div>
-              </section>
-            </div>
+            <NearPlaceCards offers={nearOffers}/>
           </>
         )}
         {!isDataLoaded && <Spinner/>}
