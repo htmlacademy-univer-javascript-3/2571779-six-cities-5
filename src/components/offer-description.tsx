@@ -5,9 +5,9 @@ import {AppRoute} from '../app-route.ts';
 import {changeFavoriteStatusAction} from '../store/api-actions.ts';
 import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {OfferShortInfo} from '../models/offer-short-info.ts';
-import {useAppSelector} from "../hooks/use-app-selector";
-import {getAuthStatus} from "../store/user-data/user-data.selectors";
-import {AuthorizationStatus} from "../shared/const";
+import {useAppSelector} from '../hooks/use-app-selector';
+import {getAuthStatus} from '../store/user-data/user-data.selectors';
+import {AuthorizationStatus} from '../shared/const';
 
 interface IOfferDescriptionProps {
   offer: OfferShortInfo;

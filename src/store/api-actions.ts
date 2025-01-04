@@ -35,7 +35,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<{ offers: OfferShortIn
 
 export const fetchNearbyOffersAction = createAsyncThunk<{ offers: OfferShortInfo[] }, string, {
   dispatch: AppDispatch;
-  state: State,
+  state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchNearbyOffers',
@@ -47,7 +47,7 @@ export const fetchNearbyOffersAction = createAsyncThunk<{ offers: OfferShortInfo
 
 export const fetchCommentsAction = createAsyncThunk<{ comments: OfferComment[] }, string, {
   dispatch: AppDispatch;
-  state: State,
+  state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchComments',
@@ -62,19 +62,19 @@ export const postCommentAction = createAsyncThunk<
   { offerId: string; comment: string; rating: number },
   {
     dispatch: AppDispatch;
-    state: State,
+    state: State;
     extra: AxiosInstance;
   }>(
-  'data/postComment',
-  async ({offerId, comment, rating}, {extra: api}) => {
-    const {data} = await api.post<OfferComment>(ApiRoute.Comments.GetListFor(offerId), {comment, rating});
-    return {comment: data};
-  },
-);
+    'data/postComment',
+    async ({offerId, comment, rating}, {extra: api}) => {
+      const {data} = await api.post<OfferComment>(ApiRoute.Comments.GetListFor(offerId), {comment, rating});
+      return {comment: data};
+    },
+  );
 
 export const fetchFullOfferInfoAction = createAsyncThunk<{ offer: OfferFullInfo }, string, {
   dispatch: AppDispatch;
-  state: State,
+  state: State;
   extra: AxiosInstance;
 }>(
   'data/fullOfferInfo',

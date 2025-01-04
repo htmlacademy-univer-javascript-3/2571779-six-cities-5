@@ -1,8 +1,8 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthorizationStatus, NameSpace} from "../../shared/const";
-import {User} from "../../models/user";
-import {checkAuthAction, loginAction, logoutAction} from "../api-actions";
-import {dropToken, saveToken} from "../../services/token";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {AuthorizationStatus, NameSpace} from '../../shared/const';
+import {User} from '../../models/user';
+import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
+import {dropToken, saveToken} from '../../services/token';
 
 export interface IUserDataInitialState {
   authStatus: AuthorizationStatus;
@@ -56,7 +56,7 @@ const userDataSlice = createSlice({
         state.authStatus = AuthorizationStatus.NoAuth;
         state.localUser = null;
         window.location.reload();
-      })
+      });
   }
 });
 

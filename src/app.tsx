@@ -9,28 +9,26 @@ import {NotFoundPage} from './pages/not-found.tsx';
 import {OfferPage} from './pages/offer/offer.tsx';
 import {PrivateRoute} from './shared/private-route.tsx';
 
-export const App: React.FC = () => {
-  return (
-    <HelmetProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<MainPage/>}/>
-          <Route
-            path={AppRoute.Favorites}
-            element={
-              <PrivateRoute>
-                <FavoritesPage/>
-              </PrivateRoute>
-            }
-          />
-          <Route path={AppRoute.Login} element={<LoginPage/>}/>
-          <Route
-            path={AppRoute.Offer.Template}
-            element={<OfferPage/>}
-          />
-          <Route path='*' element={<NotFoundPage/>}/>
-        </Routes>
-      </BrowserRouter>
-    </HelmetProvider>
-  );
-};
+export const App: React.FC = () => (
+  <HelmetProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<MainPage/>}/>
+        <Route
+          path={AppRoute.Favorites}
+          element={
+            <PrivateRoute>
+              <FavoritesPage/>
+            </PrivateRoute>
+          }
+        />
+        <Route path={AppRoute.Login} element={<LoginPage/>}/>
+        <Route
+          path={AppRoute.Offer.Template}
+          element={<OfferPage/>}
+        />
+        <Route path='*' element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+  </HelmetProvider>
+);

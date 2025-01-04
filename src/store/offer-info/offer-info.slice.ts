@@ -1,13 +1,14 @@
-import {OfferShortInfo} from "../../models/offer-short-info";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NameSpace} from "../../shared/const";
-import {OfferFullInfo} from "../../models/offer-full-info";
-import {OfferComment} from "../../models/offer-comment";
+import {OfferShortInfo} from '../../models/offer-short-info';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {NameSpace} from '../../shared/const';
+import {OfferFullInfo} from '../../models/offer-full-info';
+import {OfferComment} from '../../models/offer-comment';
 import {
+  changeFavoriteStatusAction,
   fetchCommentsAction, fetchFullOfferInfoAction,
   fetchNearbyOffersAction,
   postCommentAction
-} from "../api-actions";
+} from '../api-actions';
 
 export interface IOfferInfoInitialState {
   offerFullInfo: OfferFullInfo | null;
@@ -67,6 +68,14 @@ const offerInfoSlice = createSlice({
       .addCase(postCommentAction.fulfilled, (state, action) => {
         offerInfoSlice.caseReducers.addComment(state, action);
       })
+      .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
+        const {offer, status} = action.meta.arg;
+        const updatedOffer = {...offer, isFavorite: status};
+
+        state.nearbyOffers = state.nearbyOffers.map((item) =>
+          item.id === updatedOffer.id ? updatedOffer : item
+        );
+      });
   }
 });
 

@@ -9,13 +9,13 @@ interface INearPlaceCardsProps {
   offers: OfferShortInfo[];
 }
 
-export const NearPlaceCards: React.FC<INearPlaceCardsProps> = React.memo(({offers}) => (
+export const NearPlaceCardsInternal: React.FC<INearPlaceCardsProps> = ({offers}) => (
   <div className="container">
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
         {offers.map((offer) => (
-          <article className="near-places__card place-card">
+          <article className="near-places__card place-card" key={offer.id}>
             <CardPremiumMark isPremium={offer.isPremium}/>
             <div className="near-places__image-wrapper place-card__image-wrapper">
               <Link to={AppRoute.Offer.CreateOne(offer.id)}>
@@ -28,4 +28,7 @@ export const NearPlaceCards: React.FC<INearPlaceCardsProps> = React.memo(({offer
       </div>
     </section>
   </div>
-));
+);
+
+export const NearPlaceCards = React.memo(NearPlaceCardsInternal);
+NearPlaceCards.displayName = 'NearPlaceCards';

@@ -1,12 +1,12 @@
 import React, {useMemo} from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {FavoriteCard} from './favorite-card.tsx';
-import {useAppSelector} from '../../hooks/use-app-selector.ts';
-import {getFavorites} from "../../store/offers-data/offers-data.selectors";
 
-export const FavoritesList: React.FC = () => {
-  const offers = useAppSelector(getFavorites);
+interface IFavoritesListProps {
+  offers: OfferShortInfo[];
+}
 
+export const FavoritesList: React.FC<IFavoritesListProps> = ({offers}) => {
   const groups = useMemo(() => {
     const map = new Map<string, OfferShortInfo[]>();
     offers.forEach((offer) => {

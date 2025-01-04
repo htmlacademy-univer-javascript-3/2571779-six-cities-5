@@ -8,8 +8,8 @@ import {useAppSelector} from '../../hooks/use-app-selector.ts';
 import {CitiesList} from './components/cities-list.tsx';
 import {SortOptions} from './components/sort-options.tsx';
 import {Spinner} from '../../components/spinner/spinner.tsx';
-import {getCurrentCity} from "../../store/navigation-data/navigation-data.selectors";
-import {getIsDataLoaded, getSortedOffers} from "../../store/offers-data/offers-data.selectors";
+import {getCurrentCity} from '../../store/navigation-data/navigation-data.selectors';
+import {getIsDataLoaded, getSortedOffers} from '../../store/offers-data/offers-data.selectors';
 
 export const MainPage: React.FC = () => {
   const [activeCard, setActiveCard] = useState<OfferBase | null>(null);

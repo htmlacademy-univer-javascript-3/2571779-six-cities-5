@@ -4,6 +4,9 @@ import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {loginAction} from '../store/api-actions.ts';
 import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../app-route.ts';
+import {useAppSelector} from '../hooks/use-app-selector';
+import {getAuthStatus} from '../store/user-data/user-data.selectors';
+import {AuthorizationStatus} from '../shared/const';
 
 const validatePassword = (password: string): boolean => {
   const digits = /\d/.test(password);
@@ -17,6 +20,11 @@ export const LoginPage: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authStatus = useAppSelector(getAuthStatus);
+
+  if (authStatus === AuthorizationStatus.Auth) {
+    navigate(AppRoute.Main);
+  }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
 import {postCommentAction} from '../../../store/api-actions.ts';
+import {useAppSelector} from '../../../hooks/use-app-selector';
+import {getAuthStatus} from '../../../store/user-data/user-data.selectors';
+import {AuthorizationStatus} from '../../../shared/const';
 
 interface IOfferReviewFormProps {
   offerId: string;
@@ -16,7 +19,9 @@ const POSSIBLE_RATING_VALUES: [number, string][] = [
 
 export const OfferReviewForm: React.FC<IOfferReviewFormProps> = ({offerId}) => {
   const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthStatus);
   const [formData, setFormData] = useState({rating: '0', review: ''});
+  const [isFormSending, setIsFormSending] = useState(false);
 
   function onCommentChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const {name, value} = evt.currentTarget;
@@ -25,15 +30,25 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = ({offerId}) => {
 
   function onFormSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+    setIsFormSending(true);
     const {rating, review} = formData;
 
     dispatch(postCommentAction({offerId, comment: review, rating: Number(rating)}))
       .then(() => {
         setFormData({rating: '', review: ''});
+        setIsFormSending(false);
+      })
+      .catch((error) => {
+        alert(`Can't send comment, error:\n${JSON.stringify(error)}`);
+        setIsFormSending(false);
       });
   }
 
-  const isSubmitDisabled = formData.rating === '0' || formData.review.length < 50;
+  const isSubmitDisabled = authStatus !== AuthorizationStatus.Auth
+    || formData.rating === '0'
+    || formData.review.length < 50
+    || formData.review.length > 300
+    || isFormSending;
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>

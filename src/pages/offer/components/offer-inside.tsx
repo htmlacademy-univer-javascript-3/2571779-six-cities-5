@@ -8,8 +8,8 @@ export const OfferInside: React.FC<IOfferInsideProps> = ({goods}) => (
   <div className="offer__inside">
     <h2 className="offer__inside-title">What&apos;s inside</h2>
     <ul className="offer__inside-list">
-      {goods.map((good, i) => (
-        <li className="offer__inside-item" key={i}>
+      {goods.map((good) => (
+        <li className="offer__inside-item" key={good}>
           {good}
         </li>
       ))}

@@ -4,12 +4,15 @@ interface IOfferGalleryProps {
   images: string[];
 }
 
-export const OfferGallery: React.FC<IOfferGalleryProps> = React.memo(({images}) => (
+const OfferGalleryInternal: React.FC<IOfferGalleryProps> = ({images}) => (
   <div className="offer__gallery">
-    {images.map((image, i) => (
-      <div className="offer__image-wrapper" key={i}>
+    {images.map((image) => (
+      <div className="offer__image-wrapper" key={image}>
         <img className="offer__image" src={image} alt="Photo studio"/>
       </div>
     ))}
   </div>
-));
+);
+
+export const OfferGallery = React.memo(OfferGalleryInternal);
+OfferGallery.displayName = 'OfferGallery';
