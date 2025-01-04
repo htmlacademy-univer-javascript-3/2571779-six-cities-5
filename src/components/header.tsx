@@ -4,6 +4,8 @@ import {AppRoute} from '../app-route.ts';
 import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {useAppSelector} from '../hooks/use-app-selector.ts';
 import {logoutAction} from '../store/api-actions.ts';
+import {getLocalUser} from "../store/user-data/user-data.selectors";
+import {getFavorites} from "../store/offers-data/offers-data.selectors";
 
 interface IHeaderProps {
   addNavigation?: boolean;
@@ -12,8 +14,8 @@ interface IHeaderProps {
 
 export const Header: React.FC<IHeaderProps> = ({addNavigation = false, isLogoActive = false}) => {
   const dispatch = useAppDispatch();
-  const localUser = useAppSelector((state) => state.localUser);
-  const favoriteOffers = useAppSelector((state) => state.favoriteOffers);
+  const localUser = useAppSelector(getLocalUser);
+  const favoriteOffers = useAppSelector(getFavorites);
 
   return (
     <header className="header">

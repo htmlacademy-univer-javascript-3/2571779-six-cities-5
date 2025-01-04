@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {FavoriteCard} from './favorite-card.tsx';
 import {useAppSelector} from '../../hooks/use-app-selector.ts';
+import {getFavorites} from "../../store/offers-data/offers-data.selectors";
 
 export const FavoritesList: React.FC = () => {
-  const offers = useAppSelector((state) => state.favoriteOffers);
+  const offers = useAppSelector(getFavorites);
 
-  const groups = new Map<string, OfferShortInfo[]>();
-  offers.forEach((offer) => {
-    const collection = groups.get(offer.city.name) ?? null;
-    if (!collection) {
-      groups.set(offer.city.name, [offer]);
-    } else {
-      collection.push(offer);
-    }
-  });
+  const groups = useMemo(() => {
+    const map = new Map<string, OfferShortInfo[]>();
+    offers.forEach((offer) => {
+      const collection = map.get(offer.city.name) ?? null;
+      if (!collection) {
+        map.set(offer.city.name, [offer]);
+      } else {
+        collection.push(offer);
+      }
+    });
+
+    return map;
+  }, [offers]);
+
 
   return (
     <ul className="favorites__list">

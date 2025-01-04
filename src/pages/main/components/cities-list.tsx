@@ -1,15 +1,16 @@
 import React from 'react';
 import {City} from '../../../models/city.ts';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
-import {setActiveCity} from '../../../store/action.ts';
 import {useAppSelector} from '../../../hooks/use-app-selector.ts';
+import {getCurrentCity} from "../../../store/navigation-data/navigation-data.selectors";
+import {setActiveCity} from "../../../store/navigation-data/navigation-data.slice";
 
 interface ICitiesListProps {
   cities: City[];
 }
 
 export const CitiesList: React.FC<ICitiesListProps> = ({cities}) => {
-  const activeCity = useAppSelector((state) => state.currentCity);
+  const activeCity = useAppSelector(getCurrentCity);
   const dispatch = useAppDispatch();
 
   function onCityClick(city: City) {

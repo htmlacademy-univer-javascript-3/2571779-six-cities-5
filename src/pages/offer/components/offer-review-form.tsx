@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useAppDispatch} from '../../../hooks/use-app-dispatch.ts';
 import {postCommentAction} from '../../../store/api-actions.ts';
-import {useAppSelector} from '../../../hooks/use-app-selector.ts';
 
 interface IOfferReviewFormProps {
+  offerId: string;
 }
 
 const POSSIBLE_RATING_VALUES: [number, string][] = [
@@ -14,9 +14,8 @@ const POSSIBLE_RATING_VALUES: [number, string][] = [
   [1, 'terribly']
 ];
 
-export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
+export const OfferReviewForm: React.FC<IOfferReviewFormProps> = ({offerId}) => {
   const dispatch = useAppDispatch();
-  const offer = useAppSelector((state) => state.offerFullInfo);
   const [formData, setFormData] = useState({rating: '0', review: ''});
 
   function onCommentChange(evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -28,11 +27,7 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = () => {
     evt.preventDefault();
     const {rating, review} = formData;
 
-    if (!offer) {
-      return;
-    }
-
-    dispatch(postCommentAction({offerId: offer?.id, comment: review, rating: Number(rating)}))
+    dispatch(postCommentAction({offerId, comment: review, rating: Number(rating)}))
       .then(() => {
         setFormData({rating: '', review: ''});
       });

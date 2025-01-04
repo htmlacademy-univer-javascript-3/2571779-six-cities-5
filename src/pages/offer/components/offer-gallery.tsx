@@ -4,7 +4,7 @@ interface IOfferGalleryProps {
   images: string[];
 }
 
-export const OfferGallery: React.FC<IOfferGalleryProps> = ({images}) => (
+export const OfferGallery: React.FC<IOfferGalleryProps> = React.memo(({images}) => (
   <div className="offer__gallery">
     {images.map((image, i) => (
       <div className="offer__image-wrapper" key={i}>
@@ -12,4 +12,4 @@ export const OfferGallery: React.FC<IOfferGalleryProps> = ({images}) => (
       </div>
     ))}
   </div>
-);
+));

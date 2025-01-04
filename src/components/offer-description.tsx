@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import {RatingStars} from './rating-stars.tsx';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AppRoute} from '../app-route.ts';
 import {changeFavoriteStatusAction} from '../store/api-actions.ts';
 import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {OfferShortInfo} from '../models/offer-short-info.ts';
+import {useAppSelector} from "../hooks/use-app-selector";
+import {getAuthStatus} from "../store/user-data/user-data.selectors";
+import {AuthorizationStatus} from "../shared/const";
 
 interface IOfferDescriptionProps {
   offer: OfferShortInfo;
@@ -13,10 +16,16 @@ interface IOfferDescriptionProps {
 export const OfferDescription: React.FC<IOfferDescriptionProps> = ({offer}) => {
   const dispatch = useAppDispatch();
   const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
+  const authStatus = useAppSelector(getAuthStatus);
+  const navigate = useNavigate();
 
   function handleFavoriteClick() {
-    dispatch(changeFavoriteStatusAction({offer: offer, status: !isFavorite}));
-    setIsFavorite(!isFavorite);
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(changeFavoriteStatusAction({offer: offer, status: !isFavorite}));
+      setIsFavorite(!isFavorite);
+    } else {
+      navigate(AppRoute.Login);
+    }
   }
 
   return (
