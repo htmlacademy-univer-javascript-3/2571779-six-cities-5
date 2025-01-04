@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CITIES, NameSpace} from "../../shared/const";
-import {City} from "../../models/city";
-import {SortOption} from "../../pages/main/shared/sort-option";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {CITIES, NameSpace} from '../../shared/const';
+import {City} from '../../models/city';
+import {SortOption} from '../../pages/main/shared/sort-option';
 
 interface INavigationDataInitialState {
   currentCity: City;
@@ -9,7 +9,7 @@ interface INavigationDataInitialState {
 }
 
 const initialState: INavigationDataInitialState = {
-  currentCity: CITIES[3],
+  currentCity: CITIES[0],
   sortOption: SortOption.WithDefaultOptions()[0],
 };
 
