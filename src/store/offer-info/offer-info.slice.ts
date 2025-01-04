@@ -69,13 +69,13 @@ const offerInfoSlice = createSlice({
         offerInfoSlice.caseReducers.addComment(state, action);
       })
       .addCase(changeFavoriteStatusAction.fulfilled, (state, action) => {
-      const {offer, status} = action.meta.arg;
-      const updatedOffer = {...offer, isFavorite: status};
+        const {offer, status} = action.meta.arg;
+        const updatedOffer = {...offer, isFavorite: status};
 
-      state.nearbyOffers = state.nearbyOffers.map((item) =>
-        item.id === updatedOffer.id ? updatedOffer : item
-      );
-    });
+        state.nearbyOffers = state.nearbyOffers.map((item) =>
+          item.id === updatedOffer.id ? updatedOffer : item
+        );
+      });
   }
 });
 

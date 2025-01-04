@@ -46,7 +46,7 @@ export const OfferPage: React.FC = () => {
           navigate(AppRoute.NotFound);
         });
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, navigate]);
 
   function handleFavoriteClick() {
     if (authStatus === AuthorizationStatus.Auth) {
