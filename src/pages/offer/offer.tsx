@@ -18,13 +18,13 @@ import {
   getNearbyOffers,
   getOfferComments,
   getOfferFullInfo
-} from "../../store/offer-info/offer-info.selectors";
-import {getOfferShortInfo} from "../../store/offers-data/offers-data.selectors";
-import {setFullOfferInfo} from "../../store/offer-info/offer-info.slice";
-import {AppRoute} from "../../app-route";
-import {getAuthStatus} from "../../store/user-data/user-data.selectors";
-import {AuthorizationStatus} from "../../shared/const";
-import {NearPlaceCards} from "./components/near-place-cards";
+} from '../../store/offer-info/offer-info.selectors';
+import {getOfferShortInfo} from '../../store/offers-data/offers-data.selectors';
+import {setFullOfferInfo} from '../../store/offer-info/offer-info.slice';
+import {AppRoute} from '../../app-route';
+import {getAuthStatus} from '../../store/user-data/user-data.selectors';
+import {AuthorizationStatus} from '../../shared/const';
+import {NearPlaceCards} from './components/near-place-cards';
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams<{ id: string }>();
@@ -32,7 +32,7 @@ export const OfferPage: React.FC = () => {
   const authStatus = useAppSelector(getAuthStatus);
   const dispatch = useAppDispatch();
   const offer = useAppSelector(getOfferFullInfo);
-  const isDataLoaded = useAppSelector(getIsDataLoaded)
+  const isDataLoaded = useAppSelector(getIsDataLoaded);
   const offerShortInfo = useAppSelector((state) => getOfferShortInfo(state, offer?.id ?? ''));
   const isFavorite = offer?.isFavorite ?? false;
   const nearOffers = useAppSelector(getNearbyOffers);
@@ -46,7 +46,7 @@ export const OfferPage: React.FC = () => {
           navigate(AppRoute.NotFound);
         });
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, navigate]);
 
   function handleFavoriteClick() {
     if (authStatus === AuthorizationStatus.Auth) {

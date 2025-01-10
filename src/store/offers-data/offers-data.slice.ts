@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NameSpace} from "../../shared/const";
-import {OfferShortInfo} from "../../models/offer-short-info";
-import {changeFavoriteStatusAction, fetchFavoriteOffersAction, fetchOffersAction} from "../api-actions";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {NameSpace} from '../../shared/const';
+import {OfferShortInfo} from '../../models/offer-short-info';
+import {changeFavoriteStatusAction, fetchFavoriteOffersAction, fetchOffersAction} from '../api-actions';
 
 export interface IOffersDataInitialState {
   offersViewList: OfferShortInfo[];
@@ -54,13 +54,13 @@ const offersDataSlice = createSlice({
         if (status) {
           state.favoriteOffers.push(updatedOffer);
         } else {
-          state.favoriteOffers = state.favoriteOffers.filter(o => o.id !== offer.id);
+          state.favoriteOffers = state.favoriteOffers.filter((o) => o.id !== offer.id);
         }
 
         state.offersViewList = state.offersViewList.map((item) =>
           item.id === updatedOffer.id ? updatedOffer : item
         );
-      })
+      });
   }
 });
 
