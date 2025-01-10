@@ -2,7 +2,7 @@ import React, {FormEvent, useRef} from 'react';
 import {Header} from '../components/header.tsx';
 import {useAppDispatch} from '../hooks/use-app-dispatch.ts';
 import {loginAction} from '../store/api-actions.ts';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AppRoute} from '../app-route.ts';
 import {useAppSelector} from '../hooks/use-app-selector';
 import {getAuthStatus} from '../store/user-data/user-data.selectors';
@@ -74,9 +74,9 @@ export const LoginPage: React.FC = () => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to="#">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

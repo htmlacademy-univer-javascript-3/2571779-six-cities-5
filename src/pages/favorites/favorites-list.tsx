@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react';
 import {OfferShortInfo} from '../../models/offer-short-info.ts';
 import {FavoriteCard} from './favorite-card.tsx';
+import {Link} from 'react-router-dom';
 
 interface IFavoritesListProps {
   offers: OfferShortInfo[];
@@ -28,9 +29,9 @@ export const FavoritesList: React.FC<IFavoritesListProps> = ({offers}) => {
         <li className="favorites__locations-items" key={cityName}>
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to="#">
                 <span>{cityName}</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="favorites__places">
