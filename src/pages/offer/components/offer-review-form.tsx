@@ -4,6 +4,7 @@ import {postCommentAction} from '../../../store/api-actions.ts';
 import {useAppSelector} from '../../../hooks/use-app-selector';
 import {getAuthStatus} from '../../../store/user-data/user-data.selectors';
 import {AuthorizationStatus} from '../../../shared/const';
+import {showToast} from '../../../shared/utilities/show-toast';
 
 interface IOfferReviewFormProps {
   offerId: string;
@@ -35,11 +36,11 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = ({offerId}) => {
 
     dispatch(postCommentAction({offerId, comment: review, rating: Number(rating)}))
       .then(() => {
-        setFormData({rating: '', review: ''});
+        setFormData({rating: '0', review: ''});
         setIsFormSending(false);
       })
       .catch((error) => {
-        alert(`Can't send comment, error:\n${JSON.stringify(error)}`);
+        showToast(`Can't send comment, error:\n${JSON.stringify(error)}`);
         setIsFormSending(false);
       });
   }
@@ -63,6 +64,7 @@ export const OfferReviewForm: React.FC<IOfferReviewFormProps> = ({offerId}) => {
               id={`${value[0]}-stars`}
               type="radio"
               onChange={onCommentChange}
+              checked={formData.rating === `${value[0]}`}
             />
             <label
               htmlFor={`${value[0]}-stars`}

@@ -7,6 +7,7 @@ import {AppRoute} from '../app-route.ts';
 import {useAppSelector} from '../hooks/use-app-selector';
 import {getAuthStatus} from '../store/user-data/user-data.selectors';
 import {AuthorizationStatus} from '../shared/const';
+import {showToast} from '../shared/utilities/show-toast';
 
 const validatePassword = (password: string): boolean => {
   const digits = /\d/.test(password);
@@ -38,7 +39,7 @@ export const LoginPage: React.FC = () => {
     const password = formData.get('password') as string;
 
     if (!validatePassword(password)) {
-      alert('Invalid password');
+      showToast('Invalid password');
       return;
     }
 
